@@ -26,9 +26,10 @@ body {
 
 body {
   display: grid;
-  grid-template-columns: 5vw 200px 3fr 5vw 2fr 5vw;
-  grid-template-rows: 70px 3rem 1fr minmax(0, 2fr) 3rem;
-  grid-template-areas: ". logo . . . ." ". title title . . ." ". main main . nav ." ". main main . . ." "footer footer footer footer footer footer"; }
+  grid-template-columns: 5vw 160px 3fr 5vw 2fr 5vw;
+  grid-template-rows: 5vw 70px 3rem 1fr minmax(0, -webkit-max-content) 3rem;
+  grid-template-rows: 5vw 70px 3rem 1fr minmax(0, max-content) 3rem;
+  grid-template-areas: ". . . . . ." ". logo res-nav res-nav res-nav ." ". title title . nav ." ". main main . nav ." ". main main . . ." "footer footer footer footer footer footer"; }
 
 .nav {
   grid-area: nav; }
@@ -41,6 +42,26 @@ body {
 
 .footer {
   grid-area: footer; }
+
+@media (max-width: 800px) {
+  body {
+    display: grid;
+    grid-template-columns: 5vw 160px 3fr 5vw 2fr 5vw;
+    grid-template-rows: 5vw 70px 5vw 3rem 1fr minmax(0, -webkit-max-content) 3rem;
+    grid-template-rows: 5vw 70px 5vw 3rem 1fr minmax(0, max-content) 3rem;
+    grid-template-areas: ". . . . . ." ". logo res-nav res-nav res-nav ." ". . . . . ." ". title title . . ." ". main main main . ." ". main main main . ." "footer footer footer footer footer footer"; }
+  .nav {
+    grid-area: res-nav; } }
+
+@media (max-width: 640px) {
+  body {
+    display: grid;
+    grid-template-columns: 5vw 160px 3fr 5vw 2fr 5vw;
+    grid-template-rows: 5vw -webkit-max-content 5vw 3rem 1fr minmax(0, -webkit-max-content) 3rem;
+    grid-template-rows: 5vw max-content 5vw 3rem 1fr minmax(0, max-content) 3rem;
+    grid-template-areas: ". . . . . ." "tnav tnav tnav tnav tnav tnav "    ". . . . . ." ". title title . . ." ". main main main . ." ". main main main . ." "footer footer footer footer footer footer"; }
+  .nav {
+    grid-area: tnav; } }
 
 /*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
 @-webkit-keyframes spinAround {
@@ -6494,10 +6515,7 @@ label.panel-block {
 
 .btn {
   padding: 1rem;
-  margin: 1rem; }
-
-.menu__item {
-  margin: 1.5rem 0;
+  margin: 1rem;
   padding: 0.5rem 2rem;
   border: 2px solid #0a0a0a;
   text-align: center;
@@ -6507,15 +6525,43 @@ label.panel-block {
   color: #0a0a0a;
   font-family: "Oswald", sans-serif;
   box-shadow: 0px 15px 0px -5px rgba(0, 0, 0, 0.75);
-  font-size: 2rem;
   display: block;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
-  .menu__item:hover {
+          user-select: none;
+  font-size: 1.3rem; }
+  .btn:hover {
     background: #363636;
     color: #FFF12D;
     -webkit-transform: scaleX(1.15) scaleY(1.05) translateY(3px);
             transform: scaleX(1.15) scaleY(1.05) translateY(3px);
     box-shadow: 0px 10px 0px -8px rgba(0, 0, 0, 0.75); }
+  .btn.large {
+    font-size: 2rem; }
+
+@media (max-width: 800px) {
+  .btn {
+    font-size: 1.1rem;
+    box-shadow: 0px 9px 0px -7px rgba(0, 0, 0, 0.75); }
+    .btn:hover {
+      box-shadow: 0px 9px 0px -8.4px rgba(0, 0, 0, 0.75); }
+    .btn.large {
+      padding: 0.3rem 1rem;
+      font-size: 1.2rem; } }
+
+@media (max-width: 640px) {
+  .btn.large {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.8rem; } }
+
+.menu__item {
+  margin: 1.5rem 0; }
+
+@media (max-width: 800px) {
+  .nav__menu {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 0.3rem; }
+  .menu__item {
+    margin: 0 0.15rem; } }
